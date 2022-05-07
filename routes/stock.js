@@ -2,7 +2,7 @@ const con = require('../lib/db');
 const express = require('express');
 module.exports = {
     getStock: function (req, res) {
-        con.query('SELECT * FROM Stock', (err, rows) => {
+        con.query('select * from Stock join ItemInformation II on Stock.ITEM_ID = II.ITEM_ID', (err, rows) => {
 
             if (err) res.status(500).send(err);
 
