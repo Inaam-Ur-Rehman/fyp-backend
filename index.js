@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 
-app.get("/", userRoute.getUsers)
+app.post("/", userRoute.getUsers)
 app.get("/user/:id", userRoute.getUser)
 
 app.get("/stock", stockRoute.getStock)
