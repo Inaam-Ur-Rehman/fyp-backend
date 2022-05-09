@@ -2,6 +2,8 @@ const userRoute = require('./routes/user');
 const stockRoute = require('./routes/stock');
 const suppliersRoute = require('./routes/suppliers');
 const salesRoute = require('./routes/sales');
+const shopRoute = require('./routes/shop');
+
 const express = require('express');
 const cors = require('cors');
 
@@ -19,6 +21,9 @@ app.get("/suppliers", suppliersRoute.getSuppliers)
 
 
 app.get("/sales", salesRoute.getSales)
+
+
+app.get("/shop", shopRoute.getShopDetails)
 
 
 app.listen(process.env.PORT || 3000, () => {
