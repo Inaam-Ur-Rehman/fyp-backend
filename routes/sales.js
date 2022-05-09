@@ -10,7 +10,7 @@ module.exports = {
         });
     },
     getCurrentDaySales: function (req, res) {
-        con.query('select SUM(TotalPrice) as sum , SUM(Cost) as  cost from Sales where Sales_Date = curdate()', (err, rows) => {
+        con.query('select SUM(TotalPrice) as sum , SUM(TotalCost) as  cost from Sales where Sales_Date = curdate()', (err, rows) => {
 
             if (err) res.status(500).send(err);
 
