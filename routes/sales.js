@@ -8,5 +8,21 @@ module.exports = {
 
             res.status(200).send(rows);
         });
+    },
+    getCurrentDaySales: function (req, res) {
+        con.query('select SUM(TotalPrice) as sum from Sales where Sales_Date=curdate()', (err, rows) => {
+
+            if (err) res.status(500).send(err);
+
+            res.status(200).send(rows);
+        })
+    },
+    getWeekSales: function (req, res) {
+        con.query('select DAYNAME(Sales_Date) as day, sum(coalesce(TotalPrice,0)) as total from Sales where Sales_Date <= NOW() and Sales_Date >= Date_add(Now(), interval - 7 day) group by Sales_Date; ', (err, rows) => {
+
+            if (err) res.status(500).send(err);
+
+            res.status(200).send(rows);
+        })
     }
 }
