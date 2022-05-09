@@ -23,6 +23,7 @@ app.get("/suppliers", suppliersRoute.getSuppliers)
 app.get("/sales", salesRoute.getSales)
 app.get("/sales/today", salesRoute.getCurrentDaySales)
 app.get("/sales/week", salesRoute.getWeekSales)
+app.get("/sales/top", salesRoute.getTopSales)
 
 
 app.get("/shop", shopRoute.getShopDetails)

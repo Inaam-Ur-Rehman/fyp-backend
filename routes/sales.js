@@ -24,5 +24,13 @@ module.exports = {
 
             res.status(200).send(rows);
         })
+    },
+    getTopSales: function (req, res) {
+        con.query('select ItemName, sum(QTY) as total from Sales, ItemInformation where Sales.ITEM_ID = ItemInformation.ITEM_ID group by ItemName order by sum(QTY) desc limit 3; ', (err, rows) => {
+
+            if (err) res.status(500).send(err);
+
+            res.status(200).send(rows);
+        })
     }
 }
