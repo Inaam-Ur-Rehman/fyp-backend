@@ -34,7 +34,7 @@ module.exports = {
         })
     },
     getMonthlySales: function (req, res) {
-        con.query('select DAYNAME(Sales_Date) as day, sum(coalesce(TotalPrice,0)) as total from Sales where Sales_Date <= NOW() and Sales_Date >= Date_add(Now(), interval - 30 day) group by Sales_Date; ', (err, rows) => {
+        con.query(`select date_format(Sales_Date,'%M') as month,sum(TotalPrice) as total from Sales group by year(Sales_Date), month(Sales_Date) order by year(Sales_Date), month(Sales_Date); `, (err, rows) => {
 
             if (err) res.status(500).send(err);
 
