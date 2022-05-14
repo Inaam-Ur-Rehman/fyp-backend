@@ -32,5 +32,13 @@ module.exports = {
 
             res.status(200).send(rows);
         })
+    },
+    getMonthlySales: function (req, res) {
+        con.query('select DAYNAME(Sales_Date) as day, sum(coalesce(TotalPrice,0)) as total from Sales where Sales_Date <= NOW() and Sales_Date >= Date_add(Now(), interval - 30 day) group by Sales_Date; ', (err, rows) => {
+
+            if (err) res.status(500).send(err);
+
+            res.status(200).send(rows);
+        })
     }
 }
