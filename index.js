@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors())
 
 app.post("/", userRoute.getUsers)
+app.get("/users", userRoute.getAllUsers)
 app.get("/user/:id", userRoute.getUser)
 
 app.get("/stock", stockRoute.getStock)

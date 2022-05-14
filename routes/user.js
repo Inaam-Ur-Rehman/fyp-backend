@@ -12,12 +12,19 @@ module.exports = {
             });
     },
     getUser: function (req, res) {
-        con.query('SELECT * FROM Users WHERE USER_ID = ?', [String(req.params.id)], (err, rows) => {
+        con.query('SELECT USER_ID, UserName, FullName FROM Users WHERE USER_ID = ?', [String(req.params.id)], (err, rows) => {
 
             if (err) res.status(500).send(err);
 
             res.status(200).send(rows);
+        });
+    },
+    getAllUsers: function (req, res) {
+        con.query('select EmployeeName, EMP_ID, Designation, Address, PhoneNo from Employee;', (err, rows) => {
 
+            if (err) res.status(500).send(err);
+
+            res.status(200).send(rows);
         });
     }
 }
